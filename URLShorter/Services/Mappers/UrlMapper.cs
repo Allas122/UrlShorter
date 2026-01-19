@@ -1,5 +1,4 @@
-﻿using URLShorter.Controller.Messages;
-using URLShorter.Domain.Entities;
+﻿using URLShorter.Domain.Entities;
 using URLShorter.Services.Dto;
 
 namespace URLShorter.Mappers;
@@ -8,7 +7,7 @@ public static class UrlMapper
 {
     public static UrlEntity ToUrlEntity(this UrlDto url)
     {
-        return new UrlEntity()
+        return new UrlEntity
         {
             Id = url.Id,
             Url = url.Url,
@@ -18,10 +17,10 @@ public static class UrlMapper
             AccessCount = url.AccessCount
         };
     }
-    
+
     public static UrlDto ToUrlDto(this UrlEntity url)
     {
-        return new UrlDto()
+        return new UrlDto
         {
             Id = url.Id,
             Url = url.Url,

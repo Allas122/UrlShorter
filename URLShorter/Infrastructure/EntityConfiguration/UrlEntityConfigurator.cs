@@ -10,9 +10,9 @@ public class UrlEntityConfigurator : IEntityTypeConfiguration<UrlEntity>
     {
         builder.ToTable("Urls");
         builder.HasKey(x => x.Id);
-        builder.Property(x=>x.CreatedAt).IsRequired();
+        builder.Property(x => x.CreatedAt).IsRequired();
         builder.Property(x => x.UpdatedAt).IsRequired();
-        builder.Property(x=>x.Url).IsRequired();
-        builder.Property(x=>x.ShortCode).IsRequired().IsUnicode();
+        builder.Property(x => x.Url).IsRequired();
+        builder.Property(x => x.ShortCode).IsRequired().IsUnicode();
     }
 }

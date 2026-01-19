@@ -6,19 +6,22 @@ namespace URLShorter.Infrastructure.Data;
 
 public class DatabaseContext : DbContext
 {
-    public DbSet<UrlEntity> Urls { get; set; }
     public DatabaseContext()
     {
         Database.EnsureCreated();
     }
 
+    public DbSet<UrlEntity> Urls { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(UrlEntityConfigurator).Assembly);
     }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite("Data Source=URLShorter.db");
+        var basePath = AppContext.BaseDirectory;
+        var dbDirectory = Path.Combine(basePath, "DB");
+        optionsBuilder.UseSqlite($"Data Source={dbDirectory}URLShorter.db");
     }
 }

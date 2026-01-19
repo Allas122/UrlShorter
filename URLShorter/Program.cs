@@ -1,14 +1,17 @@
 using URLShorter.Infrastructure.Data;
+using URLShorter.Infrastructure.ExceptionFilter;
 using URLShorter.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<UrlService>();
+builder.Services.AddScoped<ServiceLayerExceptionFilter>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddControllers();
+builder.Services.AddControllers(options => options.Filters.Add<ServiceLayerExceptionFilter>());
 builder.Services.AddDbContext<DatabaseContext>();
 
-builder.Services.AddScoped<UrlService>();
 
 var app = builder.Build();
 
